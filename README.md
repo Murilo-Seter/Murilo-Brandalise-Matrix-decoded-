@@ -12,3 +12,17 @@ I successfully developed and tested a simple matrix construction formula specifi
 
 ### 🧠 My Approach
 Even when exploring complex fields like quantum mathematics independently, I believe in creating solutions that are elegant, logical, and straightforward to implement.
+
+## 📐 The Formula: Geometric Reflection Point by Center-Order Law
+
+Below is the mathematical formulation developed for symmetric matrix construction:
+
+$$M(i,j) = 1 + \left[ \left( \left( i + j - \frac{n+3}{2} \right) \bmod n \right) \times n \right] + \left( \left( i - j + \frac{n-1}{2} \right) \bmod n \right)$$
+
+### 📋 Legend / Notation:
+* **$n$** = Matrix Order (e.g., 9)
+* **$i$** = Row Index (1 to $n$)
+* **$j$** = Column Index (1 to $n$)
+* **$M(i, j)$** = Value at Cell $(i, j)$
+* **$\bmod$** = Modulo Operator (Remainder of Division)
+* **$1+$** = Index Shift (Ensures values from 1 to $n^2$)
