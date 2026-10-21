@@ -1,5 +1,5 @@
 markdown
-# Hello, I'm Murilo 👋
+# Hello, I'm Murilo Brandalise
 
 I work with **symmetric logic** and focus on developing practical mathematical solutions for advanced technology. 
 
