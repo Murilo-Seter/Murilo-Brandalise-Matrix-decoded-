@@ -29,6 +29,67 @@ Below is the formal mathematical formulation developed for this deterministic ma
 *   \(\bmod\) = Modulo Operator (Strictly preserving positive remainders)
 *   \(1+\) = Index Shift (Ensures values scale smoothly from \(1\) to \(n^2\))
 
+# Mathematical Proof of Non-Collision and Bijectivity
+
+## Theorem
+Let $n$ be an odd integer, and let the index set be $I = \{1, 2, \dots, n\}$. The **Geometric Reflection Point by Center-Order Law** mapping function $M: I \times I \rightarrow \{1, 2, \dots, n^2\}$, defined as:
+
+$$M(i,j) = 1 + \left[ \left( \left(i + j - \frac{n+3}{2}\right) \bmod n \right) \times n \right] + \left( \left(i - j + \frac{n-1}{2}\right) \bmod n \right)$$
+
+is a **bijection**. Consequently, every integer from $1$ to $n^2$ appears exactly once in the matrix, guaranteeing a collision-free mapping.
+
+---
+
+## Proof by Decomposition (Base-$n$ Numerical System)
+
+To understand why the components must remain strictly separated, we map the formulation into a standard positional base-$n$ coordinate system. Any integer $Z \in \{1, 2, \dots, n^2\}$ can be uniquely represented in the form:
+
+$$Z = 1 + (R \times n) + C$$
+
+where:
+*   $R \in \{0, 1, \dots, n-1\}$ acts as the major row-block multiplier (the "quotient").
+*   $C \in \{0, 1, \dots, n-1\}$ acts as the minor element shifter (the "remainder").
+
+By comparing this representation with Murilo's formula, we define two discrete coordinate mappings, $f(i,j)$ and $g(i,j)$:
+
+$$f(i,j) = \left(i + j - \frac{n+3}{2}\right) \bmod n$$
+$$g(i,j) = \left(i - j + \frac{n-1}{2}\right) \bmod n$$
+
+For $M(i,j)$ to be bijective, the vector mapping $\Phi(i,j) = (f(i,j), g(i,j))$ must map the $n^2$ unique spatial coordinates $(i,j)$ to $n^2$ unique pairs of $(R,C)$.
+
+### 1. Injective Verification (Proof of Non-Collision)
+Assume there are two distinct cells, $(i_1, j_1)$ and $(i_2, j_2)$, that yield the exact same value in the matrix. For a collision to occur, both the major and minor blocks must match simultaneously:
+
+1.  $f(i_1, j_1) = f(i_2, j_2) \implies i_1 + j_1 \equiv i_2 + j_2 \pmod n$
+2.  $g(i_1, j_1) = g(i_2, j_2) \implies i_1 - j_1 \equiv i_2 - j_2 \pmod n$
+
+We can solve this as a system of linear congruences. Adding the two congruence relations together:
+
+$$(i_1 + j_1) + (i_1 - j_1) \equiv (i_2 + j_2) + (i_2 - j_2) \pmod n$$
+$$2i_1 \equiv 2i_2 \pmod n$$
+
+Because $n$ is an **odd integer**, the greatest common divisor $\gcd(2, n) = 1$. Therefore, we can safely divide both sides by 2 within the modular arithmetic field:
+
+$$i_1 \equiv i_2 \pmod n$$
+
+Since indices are constrained such that $i \in \{1, \dots, n\}$, it follows strictly that:
+$$i_1 = i_2$$
+
+Substituting $i_1 = i_2$ back into the first congruence:
+$$i_1 + j_1 \equiv i_1 + j_2 \pmod n \implies j_1 \equiv j_2 \pmod n \implies j_1 = j_2$$
+
+Thus, $(i_1, j_1) = (i_2, j_2)$. This proves that **no two distinct cells can ever compute the same value**. The mapping is strictly injective.
+
+---
+
+## 🧭 Why the Separation is Mandatory (Structural Significance)
+
+If the minor term $g(i,j)$ were inside the main bracket and multiplied by $n$, the base system would collapse. 
+
+1.  **Geometric Intersection:** The term $(i+j)$ generates parallel geometric wave-fronts sloping downward-left ($\backslash$), while $(i-j)$ generates wave-fronts sloping downward-right ($/$). Keeping them separated ensures that every cell $(i,j)$ acts as the unique intersection point between one specific positive wave and one specific negative wave.
+2.  **Orthogonal Isolation:** The separation forces the algebraic operations to run on orthogonal dimensional scales. The term $[f(i,j) \times n]$ scales the values in large structural strides of size $n$, while $g(i,j)$ fills the micro-spaces linearly between those strides. 
+
+Without this explicit structural separation, the mapping would lose its coordinate independence, inducing mathematical overlaps, empty elements, and catastrophic data collision.
 ---
 
 ## 💻 Quick Start & Python Implementation
