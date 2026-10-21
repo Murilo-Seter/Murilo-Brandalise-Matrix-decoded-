@@ -17,6 +17,8 @@ Even when exploring complex fields like quantum mathematics independently, I bel
 
 Below is the mathematical formulation developed for symmetric matrix construction:
 
+$$\mathbf{M(i,j) = 1 + \left[\left(\left(i + j - \frac{n+3}{2}\right) \bmod n\right) \times n\right] + \left(\left(i - j + \frac{n-1}{2}\right) \bmod n\right)}$$
+
 $$M(i,j) = 1 + \left[ \left( \left( i + j - \frac{n+3}{2} \right) \bmod n \right) \times n \right] + \left( \left( i - j + \frac{n-1}{2} \right) \bmod n \right)$$
 
 ### 📋 Legend / Notation:
